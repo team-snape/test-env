@@ -40,24 +40,24 @@ export const resolvers = {
         users: previous.users.concat([newUser]),
       };
 
-      if (
-        name === '' ||
-        userName === '' ||
-        department === '' ||
-        access === ''
-      ) {
-        alert('all field is required');
-      } else {
+      // if (
+      //   name === '' ||
+      //   userName === '' ||
+      //   department === '' ||
+      //   access === ''
+      // ) {
+      //   alert('all field is required');
+      // } else {
         // user Name Validation
         const validation = previous.users.find(
           user => user.userName === userName,
         );
-        if (validation === undefined) {
+        // if (validation === undefined) {
           cache.writeData({ data });
           return newUser;
-        }
-        alert('user name is already in use');
-      }
+      //   }
+      //   alert('user name is already in use');
+      // // }
     },
     updateUser: (_, variables, { cache }) => {
       const query = gql`

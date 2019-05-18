@@ -47,12 +47,13 @@ const typeDefs = `
     Users: [User]
   }
 `;
+console.log(typeDefs);
 const client = new ApolloClient({
   cache,
   link: withClientState({ resolvers, defaults, cache, typeDefs}),
 });
 
-console.log(client.localState.cache.data.data);
+//console.log(client.localState.cache.data.data);
 
 render(
   <ApolloProvider client={client}>
