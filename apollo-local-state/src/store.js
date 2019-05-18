@@ -1,11 +1,8 @@
 import React from 'react';
-import { ApolloClient } from 'apollo-client';
-import { withClientState } from 'apollo-link-state';
-import {clientCopy} from './index';
+import { typeDef } from './index';
+import { square } from './index'
 
 
-export wrap = () => {
-  console.log(clientCopy);
-}
+console.log(square(typeDef));
 
 

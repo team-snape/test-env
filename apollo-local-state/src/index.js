@@ -6,8 +6,8 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloProvider } from 'react-apollo';
 
 import App from './components/App';
+import store from './store';
 import { resolvers, defaults } from './resolvers';
-
 
 const cache = new InMemoryCache();
 
@@ -47,12 +47,57 @@ const typeDefs = `
     Users: [User]
   }
 `;
-const client = new ApolloClient({
+
+export const client = new ApolloClient({
   cache,
   link: withClientState({ resolvers, defaults, cache, typeDefs}),
 });
 
-console.log(client.localState.cache.data.data);
+
+
+export function typeDef() {
+  const typeDefs = `
+  type User {
+    id: Int!
+    text: String!
+    name: String
+    userName: String
+    department: String
+    access: String
+    completed: Boolean!
+  }
+
+  type Mutation {
+    addUser(
+      text: String!,
+      name: String,
+      userName: String,
+      department: String,
+      access: String,
+      ): User
+    updateUser(
+      id:ID!
+      text: String!,
+      name: String,
+      userName: String,
+      department: String,
+      access: String,
+      ): User
+    toggleUser(id: Int!): User
+    deleteUser(id:Int!):User
+  }
+
+  type Query {
+    visibilityFilter: String
+    Users: [User]
+  }
+`;
+  return typeDefs;
+}
+export function square(cb) {
+   return cb();
+}
+
 
 render(
   <ApolloProvider client={client}>
@@ -61,4 +106,4 @@ render(
   document.getElementById('root'),
 );
 
-
+export * from './index';
