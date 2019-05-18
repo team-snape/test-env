@@ -48,10 +48,15 @@ const typeDefs = `
   }
 `;
 
+
 export const client = new ApolloClient({
+
+const client = new ApolloClient({
+
   cache,
   link: withClientState({ resolvers, defaults, cache, typeDefs}),
 });
+
 
 
 
@@ -97,6 +102,7 @@ export function typeDef() {
 export function square(cb) {
    return cb();
 }
+
 
 
 render(

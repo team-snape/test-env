@@ -49,6 +49,19 @@ const User = ({
             {' '}
             <strong>Access-</strong> {access}
           </h1>
+          {/* {`{
+  "data": {
+    "users": [
+      {
+        "id": 0,
+        "completed": false,
+        "text": "jhjksajk",
+        "name": "steven",
+        "userName": "asdfsd",
+        "department": "bobb",
+        "access": "dfdfdf",
+        "__typename": "UserItem"
+      },`} */}
         </div>
         <footer className="card-footer">
           <a onClick={toggleUser} className="card-footer-item">
