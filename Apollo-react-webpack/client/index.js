@@ -11,6 +11,7 @@ import { resolvers, defaults } from './resolvers';
 // cache, Schema, and Apollo Store
 const cache = new InMemoryCache();
 
+
 const typeDefs = `
   type User {
     id: Int!
@@ -53,7 +54,7 @@ export const client = new ApolloClient({
   link: withClientState({ resolvers, defaults, cache, typeDefs}),
 });
 
-//console.log(client.localState.cache.data.data);
+console.log(client.localState.cache.data.data);
 //console.log(client.mutate);
 
 

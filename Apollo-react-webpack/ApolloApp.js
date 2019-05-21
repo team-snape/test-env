@@ -4,11 +4,11 @@ import "./App.css";
 import {resolvers} from './client/resolvers';
 import {GET_USERS} from './client/components/App';
 //console.log(client);
-// console.log(client.localState.cache.data.data.ROOT_QUERY);
-// console.log(resolvers.Mutation);
+//console.log(client.localState.cache.data.data.ROOT_QUERY);
+//console.log(resolvers.Mutation);
 
 //console.log(GET_USERS.definitions['0'].selectionSet.selections['0'].selectionSet.selections);
-console.log(GET_USERS.loc.source.body);
+//console.log(GET_USERS.loc.source.body);
 
 //array of query values from client
 const dataArray = GET_USERS.definitions['0'].selectionSet.selections['0'].selectionSet.selections;
