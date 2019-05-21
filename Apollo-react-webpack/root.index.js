@@ -49,6 +49,8 @@ const typeDefs = `
   }
 `;
 
+console.log(test);
+
 //Apollo Aperture Store
 const store = new ApolloClient({
   cache,
