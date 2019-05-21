@@ -8,7 +8,7 @@ import UserList from './UserList';
 import UserForm from './UserForm';
 
 //get user query
-const GET_USERS = qql`
+export const GET_USERS = qql`
 {
   users @client {
     id
@@ -21,6 +21,8 @@ const GET_USERS = qql`
   }
   visibilityFilter @client
 }`;
+
+
 
 //state for userID
 class App extends React.Component{

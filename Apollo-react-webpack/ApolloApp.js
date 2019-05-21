@@ -1,8 +1,17 @@
 import React, { Component } from "react";
-import client from './client/index'
+import client from './client/index';
 import "./App.css";
+import {resolvers} from './client/resolvers';
+import {GET_USERS} from './client/components/App';
+//console.log(client);
+// console.log(client.localState.cache.data.data.ROOT_QUERY);
+// console.log(resolvers.Mutation);
 
-console.log(client.localState.cache.data.data);
+//console.log(GET_USERS.definitions['0'].selectionSet.selections['0'].selectionSet.selections);
+console.log(GET_USERS.loc.source.body);
+
+//array of query values from client
+const dataArray = GET_USERS.definitions['0'].selectionSet.selections['0'].selectionSet.selections;
 
 class App extends Component {
   constructor(props) {
@@ -39,6 +48,10 @@ class App extends Component {
   }
 
   render() {
+    const displayVal = [];
+    //console.log(dataArray);
+
+    
     return (
       <div>
         <TitleDiv />
@@ -78,6 +91,7 @@ const PostsContainer = props => {
           selectedPost={props.selectedPost}
         />
       ))}
+      {GET_USERS.loc.source.body}
     </div>
   );
 };

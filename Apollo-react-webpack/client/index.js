@@ -54,6 +54,8 @@ export const client = new ApolloClient({
 });
 
 //console.log(client.localState.cache.data.data);
+//console.log(client.mutate);
+
 
 render(
   <ApolloProvider client={client}>
