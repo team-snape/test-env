@@ -63,10 +63,13 @@ const FormPage = () => {
             <RaisedButton label="Cancel"/>
           </Link>
 
+          {/* // Redirects to Dashboard */}
+          <Link to="/">
           <RaisedButton label="LAUNCH"
                         style={styles.saveButton}
                         type="submit"
                         primary={true}/>
+          </Link>
         </div>
       </form>
     </PageBase>

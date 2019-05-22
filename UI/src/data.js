@@ -2,7 +2,7 @@ import React from 'react';
 import Assessment from 'material-ui/svg-icons/action/assessment';
 import GridOn from 'material-ui/svg-icons/image/grid-on';
 import Web from 'material-ui/svg-icons/av/web';
-import {yellow700, pink600, green600} from 'material-ui/styles/colors';
+import {cyan600, blue700, purple400} from 'material-ui/styles/colors';
 import ExpandLess from 'material-ui/svg-icons/navigation/expand-less';
 import ExpandMore from 'material-ui/svg-icons/navigation/expand-more';
 import ChevronRight from 'material-ui/svg-icons/navigation/chevron-right';
@@ -42,9 +42,9 @@ const data = {
       {pv: 4300}
     ],
     Pies: [
-      {name: 'Comp1', value: 800, color: green600, icon: <ExpandMore/>},
-      {name: 'Comp2', value: 300, color: yellow700, icon: <ChevronRight/>},
-      {name: 'Comp3', value: 300, color: pink600, icon: <ExpandLess/>}
+      {name: 'Comp1', value: 800, color: purple400, icon: <ExpandMore/>},
+      {name: 'Comp2', value: 300, color: cyan600, icon: <ChevronRight/>},
+      {name: 'Comp3', value: 300, color: blue700, icon: <ExpandLess/>}
     ]
   }
 };

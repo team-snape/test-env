@@ -38,7 +38,7 @@ class App extends React.Component {
       container: {
         margin: '80px 20px 20px 15px',
         paddingLeft: navDrawerOpen && this.props.width !== SMALL ? paddingLeftDrawerOpen : 0
-      }
+      },
     };
 
     return (
@@ -54,6 +54,7 @@ class App extends React.Component {
             <div style={styles.container}>
               {this.props.children}
             </div>
+	   <img src="../images/rocket.svg" alt="whoops" />
         </div>
       </MuiThemeProvider>
     );
