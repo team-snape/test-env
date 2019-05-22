@@ -25,10 +25,10 @@ const ExtraSpace = () => {
   };
   return (
     <Paper style={styles.paper}>
-      <div style={{...GlobalStyles.title, ...styles.header}}>Room for something...</div>
+      <div style={{...GlobalStyles.title, ...styles.header}}> Query Response </div>
       <div style={styles.div}>
         <ResponsiveContainer>
-          <h1>Howdy?</h1> 
+          <h1>Response outputs here...</h1> 
         </ResponsiveContainer>
       </div>
     </Paper>
