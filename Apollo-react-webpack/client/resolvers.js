@@ -25,7 +25,7 @@ export const resolvers = {
       `;
 
       const previous = cache.readQuery({ query });
-      console.log('data', previous.users);
+      //console.log('data', previous.users);
       const newUser = {
         id: nextUserId++,
         text,

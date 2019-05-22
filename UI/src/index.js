@@ -1,16 +1,25 @@
+/* eslint-disable import/default */
+
 import React from 'react';
 import { render } from 'react-dom';
-import { ApolloClient } from 'apollo-client';
-import { withClientState } from 'apollo-link-state';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { ApolloProvider } from 'react-apollo';
-
-import App from './components/App';
+import { Router, browserHistory } from 'react-router';
+import { ApolloClient } from "apollo-client";
+import { withClientState } from "apollo-link-state";
+import { InMemoryCache } from "apollo-cache-inmemory";
+import { ApolloProvider } from "react-apollo";
 import { resolvers, defaults } from './resolvers';
+import routes from './routes';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+require('./favicon.ico');
+import './styles.scss';
+import 'font-awesome/css/font-awesome.css';
+import 'flexboxgrid/css/flexboxgrid.css';
+
+
+injectTapEventPlugin();
 
 // cache, Schema, and Apollo Store
 const cache = new InMemoryCache();
-
 
 export const typeDefs = `
   type User {
@@ -54,15 +63,11 @@ export const client = new ApolloClient({
   link: withClientState({ resolvers, defaults, cache, typeDefs}),
 });
 
-//console.log(client.localState.cache.data.data);
-//console.log(client.mutate);
-
+// console.log(client.localState.cache.data.data);
+// console.log(client.mutate);
 
 render(
-  <ApolloProvider client={client}>
-    <App />
-  </ApolloProvider>,
-  document.getElementById('root'),
+    <ApolloProvider client={client}><Router routes={routes} history={browserHistory} /></ApolloProvider>, document.getElementById('app')
 );
 
 export default client;
