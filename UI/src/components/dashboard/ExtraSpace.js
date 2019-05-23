@@ -21,14 +21,22 @@ const ExtraSpace = (props) => {
       color: white,
       backgroundColor: blueGrey600,
       padding: 10
+    },
+    image: {
+      margin: '0 auto',
+      display: 'block',
+      maxWidth: '10%',
+      height: 'auto',
+      paddingBottom: '20px',
     }
   };
+
   return (
     <Paper style={styles.paper}>
       <div style={{...GlobalStyles.title, ...styles.header}}> Query Response </div>
       <div style={styles.div}>
         <ResponsiveContainer>
-          <h1>{props.queryResponse}</h1> 
+          <img src={props.moon[0]} alt="" style={styles.image} />
         </ResponsiveContainer>
       </div>
     </Paper>
