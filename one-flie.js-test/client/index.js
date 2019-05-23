@@ -7,8 +7,10 @@ import { ApolloProvider } from 'react-apollo';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
 import { find } from 'lodash';
+import {Query} from 'react-apollo';
+import {CSVLink} from 'react-csv';
 
-import App from './components/App';
+//import App from './components/App';
 //import { resolvers, defaults } from './resolvers';
 
 // cache, Schema, and Apollo Store
@@ -51,6 +53,9 @@ export const typeDefs = `
     Users: [User]
   }
 `;
+
+
+
 
 // from user.js
 const TOGGLE_USER = gql`
@@ -121,83 +126,92 @@ const User = ({
   </Mutation>
 );
 
-//from UserForm.js
-
-const ADD_USER = gql`
-  mutation addUser(
-    $text: String!
-    $name: String
-    $userName: String
-    $department: String
-    $access: String
-  ) {
-    addUser(
-      text: $text
-      name: $name
-      userName: $userName
-      department: $department
-      access: $access
-    ) @client {
-      id
-    }
+// from Form.js
+class UserForm2 extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      text: 'text, hardcoded',
+      name: '',
+      userName: '',
+      department: '',
+      access: '',
+    };
+    this.handelChange = this.handelChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
-`;
-
-const UPDATE_USER = gql`
-  mutation updateUser(
-    $id: ID!
-    $text: String!
-    $name: String
-    $userName: String
-    $department: String
-    $access: String
-  ) {
-    updateUser(
-      id: $id
-      text: $text
-      name: $name
-      userName: $userName
-      department: $department
-      access: $access
-    ) @client {
-      id
-    }
-  }
-`;
-
-
-const UserForm = ({ userId, users, handelEditCard }) => {
-    const user = find(users, user => user.id === userId);
-    if (userId === null) {
-      return (
-        <Mutation mutation={ADD_USER}>
-          {addUser => (
-            <div>
-              <h1 className="title">Add User</h1>
-              <Form handleSubmit={addUser} />
-            </div>
-          )}
-        </Mutation>
-      );
-    }
-    return (
-      <Mutation mutation={UPDATE_USER}>
-        {updateUser => (
-          <div>
-            <h1 className="title">Update User</h1>
-            <UserUpdateForm
-              handleSubmit={updateUser}
-              user={user}
-              handelEditCard={handelEditCard}
-            />
-          </div>
-        )}
-      </Mutation>
-    );
+  //onchange to get varibales from form
+  handelChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
   };
 
-//from resovlers.js
+  handleSubmit(e){
+ 
+    e.preventDefault();
+    this.props.handleSubmit({ variables: { ...this.state } });
+  };
 
+  render() {
+    return (
+      <div>
+        <div className="field">
+          <label className="label">Name</label>
+          <div className="control">
+            <input
+              className="input"
+              type="text"
+              name="name"
+              onChange={this.handelChange}
+            />
+          </div>
+        </div>
+        <div className="field">
+          <label className="label">UserName</label>
+          <div className="control">
+            <input
+              className="input"
+              type="text"
+              name="userName"
+              onChange={this.handelChange}
+            />
+          </div>
+        </div>
+        <div className="field">
+          <label className="label">Department</label>
+          <div className="control">
+            <input
+              className="input"
+              type="text"
+              name="department"
+              onChange={this.handelChange}
+            />
+          </div>
+        </div>
+        <div className="field">
+          <label className="label">Access</label>
+          <div className="control">
+            <input
+              className="input"
+              type="text"
+              name="access"
+              onChange={this.handelChange}
+            />
+          </div>
+        </div>
+        <button
+          className="button is-primary"
+          type="submit"
+          onClick={this.handleSubmit}
+        >
+          Submit
+        </button>
+      </div>
+    );
+  }
+}
+
+
+//from resovlers.js//
 const defaults = {
   users: [],
   visibilityFilter: 'SHOW_ALL',
@@ -323,8 +337,7 @@ const resolvers = {
   },
 };
 
-//from UserUpdateForm.js
-
+//from UserUpdateForm.js//
 class UserUpdateForm extends React.Component {
   constructor(props) {
     super(props);
@@ -413,6 +426,82 @@ class UserUpdateForm extends React.Component {
   }
 }
 
+
+//from UserForm.js//
+const ADD_USER = gql`
+  mutation addUser(
+    $text: String!
+    $name: String
+    $userName: String
+    $department: String
+    $access: String
+  ) {
+    addUser(
+      text: $text
+      name: $name
+      userName: $userName
+      department: $department
+      access: $access
+    ) @client {
+      id
+    }
+  }
+`;
+
+const UPDATE_USER = gql`
+  mutation updateUser(
+    $id: ID!
+    $text: String!
+    $name: String
+    $userName: String
+    $department: String
+    $access: String
+  ) {
+    updateUser(
+      id: $id
+      text: $text
+      name: $name
+      userName: $userName
+      department: $department
+      access: $access
+    ) @client {
+      id
+    }
+  }
+`;
+
+
+const UserForm = ({ userId, users, handelEditCard }) => {
+    const user = find(users, user => user.id === userId);
+    if (userId === null) {
+      return (
+        <Mutation mutation={ADD_USER}>
+          {addUser => (
+            <div>
+              <h1 className="title">Add User</h1>
+              <UserForm handleSubmit={addUser} />
+            </div>
+          )}
+        </Mutation>
+      );
+    }
+    return (
+      <Mutation mutation={UPDATE_USER}>
+        {updateUser => (
+          <div>
+            <h1 className="title">Update User</h1>
+            <UserUpdateForm
+              handleSubmit={updateUser}
+              user={user}
+              handelEditCard={handelEditCard}
+            />
+          </div>
+        )}
+      </Mutation>
+    );
+  };
+
+
 // from UserList.js
 const getVisibleUsers = (users, filter) => {
   switch (filter) {
@@ -436,7 +525,131 @@ const UserList = ({ users, visibilityFilter, handelEditCard }) => (
   </ul>
 );
 
-//original index.js code
+//from Link.js//
+const Link = ({ active, children, onClick }) => {
+  if (active) {
+    return <span>{children}</span>;
+  }
+
+  return (
+    <div className="column">
+      <a
+        className="button"
+        onClick={e => {
+          e.preventDefault();
+          onClick();
+        }}
+      >
+        {children}
+      </a>
+    </div>
+  );
+};
+
+//from Header.js// 
+const GET_VISIBILITY_FILTER = gql`
+  {
+    visibilityFilter @client
+  }
+`;
+
+const FilterLink = ({ filter, children }) => (
+  <Query query={GET_VISIBILITY_FILTER}>
+    {({ client }) => (
+      <Link
+        onClick={() => client.writeData({ data: { visibilityFilter: filter } })}
+        // active={data.visibilityFilter === filter}
+      >
+        {children}
+      </Link>
+    )}
+  </Query>
+);
+
+const Header = () => (
+  <div className="columns is-centered">
+    <FilterLink filter="SHOW_ALL">All User</FilterLink>
+    <FilterLink filter="SHOW_ACTIVE">Active User</FilterLink>
+    <FilterLink filter="SHOW_COMPLETED">Deactive User</FilterLink>
+  </div>
+);
+
+//from App.js//
+const GET_USERS = gql`
+{
+  users @client {
+    id
+    completed
+    text
+    name
+    userName
+    department
+    access
+  }
+  visibilityFilter @client
+}`;
+
+
+
+//state for userID
+class App extends React.Component{
+  constructor() {
+    super();
+    this.state = {
+      userId: null,
+    };
+    this.handelEditCard = this.handelEditCard.bind(this);
+  }
+
+
+handelEditCard(userId){
+  this.setState({ userId });
+  console.log(this.state);
+};
+
+render() {
+  return (
+    <div>
+      <div className="container section">
+        <Query query={GET_USERS}>
+          {({ data: { users, visibilityFilter } }) => (
+            <div className="columns is-centered">
+              <div className=" box column is-half">
+                <Header />
+                <hr />
+                <UserList
+                  users={users}
+                  visibilityFilter={visibilityFilter}
+                  handelEditCard={this.handelEditCard}
+                />
+                <br />
+                <a
+                  className="button"
+                  onClick={() => this.handelEditCard(null)}
+                >
+                  Add User
+                </a>
+                <CSVLink className="button" data={users}>
+                  Download Users Data
+                </CSVLink>
+              </div>
+              <div className="box column is-half">
+                <UserForm
+                  userId={this.state.userId}
+                  users={users}
+                  handelEditCard={this.handelEditCard}
+                />
+              </div>
+            </div>
+          )}
+        </Query>
+      </div>
+    </div>
+  );
+}
+}
+
+//original index.js code//
 const client = new ApolloClient({
   cache,
   link: withClientState({ resolvers, defaults, cache, typeDefs}),
