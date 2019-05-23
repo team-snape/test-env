@@ -40,7 +40,7 @@ const PastQuery = (props) => {
           <div key={item.title}>
             <ListItem
               primaryText={"Schema Name"}
-              secondaryText={"What should we put here?"}
+              secondaryText={"Click to Expand"}
               rightIconButton={rightIconMenu}
             />
             <Divider inset={true} />

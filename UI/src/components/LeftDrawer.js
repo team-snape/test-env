@@ -5,6 +5,7 @@ import {white, deepPurple800} from 'material-ui/styles/colors';
 import MenuItem from 'material-ui/MenuItem';
 import {Link} from 'react-router';
 import Avatar from 'material-ui/Avatar';
+import Moon from '../images/rocket.svg';
 
 const LeftDrawer = (props) => {
   let { navDrawerOpen } = props;
@@ -44,6 +45,13 @@ const LeftDrawer = (props) => {
         color: 'white',
         fontWeight: 300,
         textShadow: '1px 1px #444'
+      },
+      image: {
+        cursor: 'pointer',
+        lineHeight: `${spacing.desktopKeylineIncrement}px`,
+        fontWeight: typography.fontWeightLight,
+        paddingLeft: 40,
+        height: 27,
       }
     }
   };
@@ -71,6 +79,7 @@ const LeftDrawer = (props) => {
             />
           )}
         </div>
+        <img src={Moon} alt="" style={styles.image} />
     </Drawer>
   );
 };

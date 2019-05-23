@@ -42,9 +42,9 @@ const data = {
       {pv: 4300}
     ],
     Pies: [
-      {name: 'Comp1', value: 800, color: purple400, icon: <ExpandMore/>},
-      {name: 'Comp2', value: 300, color: cyan600, icon: <ChevronRight/>},
-      {name: 'Comp3', value: 300, color: blue700, icon: <ExpandLess/>}
+      {name: 'Dashboard Component', value: 800, color: purple400, icon: <ExpandMore/>},
+      {name: 'Mission Component', value: 300, color: cyan600, icon: <ChevronRight/>},
+      {name: 'Shuttle Component', value: 300, color: blue700, icon: <ExpandLess/>}
     ]
   }
 };
