@@ -4,8 +4,8 @@ import {white, blueGrey600} from 'material-ui/styles/colors';
 import {ResponsiveContainer} from 'recharts';
 import GlobalStyles from '../../styles';
 
-// This is a presentational component we can put anything into... Currently a card w/ "Howdy"
-const ExtraSpace = () => {
+// This is a presentational component where we can put the query results
+const ExtraSpace = (props) => {
   const styles = {
     paper: {
       backgroundColor: white,
@@ -28,7 +28,7 @@ const ExtraSpace = () => {
       <div style={{...GlobalStyles.title, ...styles.header}}> Query Response </div>
       <div style={styles.div}>
         <ResponsiveContainer>
-          <h1>Response outputs here...</h1> 
+          <h1>{props.queryResponse}</h1> 
         </ResponsiveContainer>
       </div>
     </Paper>

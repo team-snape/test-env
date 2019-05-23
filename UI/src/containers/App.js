@@ -11,7 +11,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      navDrawerOpen: false
+      navDrawerOpen: false,
+      queryResponse: "",
     };
   }
 
@@ -19,7 +20,7 @@ class App extends React.Component {
     if (this.props.width !== nextProps.width) {
       this.setState({navDrawerOpen: nextProps.width === LARGE});
     }
-  }
+  } 
 
   handleChangeRequestNavDrawer() {
     this.setState({
@@ -54,7 +55,7 @@ class App extends React.Component {
             <div style={styles.container}>
               {this.props.children}
             </div>
-	   <img src="../images/rocket.svg" alt="whoops" />
+	   {/* <img src="../images/rocket.svg" alt="whoops" styles={styles.image}/> */}
         </div>
       </MuiThemeProvider>
     );
