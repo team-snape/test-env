@@ -21,7 +21,7 @@ const GET_USERS = gql`
     visibilityFilter @client
   }
 `;
- console.log(GET_USERS);
+ //console.log(GET_USERS);
 class App extends React.Component {
   constructor() {
     super();
